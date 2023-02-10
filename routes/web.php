@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\DaysController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,10 @@ route::get('/admin/destroy/{id}', [FoodController::class, 'destroy'])->name('des
 route::get('/admin/show/{id}', [FoodController::class, 'show'])->name('show');
 route::put('/admin/update/{id}', [FoodController::class, 'update'])->name('update');
 route::put('/admin/store', [FoodController::class, 'store'])->name('store');
+route::get('/addadmin', [ProfileController::class, 'addAdmin'])->name('addadmin');
+route::get('/days', [DaysController::class, 'foodstime'])->name('days');
+route::put('/storeadmin', [ProfileController::class, 'storeAdmin'])->name('storeAdmin');
+route::put('/daysadded', [DaysController::class, 'store'])->name('adddaysandfood');
 });
 
 Route::middleware('auth')->group(function () {

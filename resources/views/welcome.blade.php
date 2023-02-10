@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="https://cdn.pixabay.com/photo/2016/05/26/14/11/chef-1417239_1280.png" />
 
-        <title>Laravel</title>
+        <title>Mahlabaty</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">

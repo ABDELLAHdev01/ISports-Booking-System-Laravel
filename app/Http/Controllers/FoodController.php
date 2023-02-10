@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Days;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
@@ -14,14 +15,17 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $data = Food::all();
-        return view('dashboard')->with('data', $data);
+        $days = Days::all();
+        $data = Food::paginate(10);
+        return view('dashboard' , ['data'=> $data], ['days'=> $days]);
         //
     }
+
+   
     public function index2()
     {
         $data = Food::all();
-        return view('foods')->with('data', $data);
+        return view('foods' ,['data'=> $data]);
         //
     }
 
@@ -69,7 +73,7 @@ class FoodController extends Controller
 
         Food::create($input);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('message','The plate has been added');
                         
         //
     }
@@ -83,7 +87,7 @@ class FoodController extends Controller
     public function show($id)
     {
         $data = Food::find($id);
-        return view('show')->with('data', $data);
+        return view('show', ['data'=> $data]);
 
     }
     public function showw($id)
@@ -103,7 +107,7 @@ class FoodController extends Controller
     {
         
         $data = Food::find($id);
-        return view('edit')->with('data', $data);
+        return view('edit',['data'=> $data]);
     }
 
     /**
@@ -130,15 +134,16 @@ class FoodController extends Controller
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
-            
-
-
-        }else{
-            unset($input['image']);
+ 
+            //hey
         }
+
+        // }else{
+        //     unset($input['image']);
+        // }
         $food->update($input);
 
-        return redirect('admin');
+        return redirect('admin')->with('message','The plate has been edited');
         
         //
     }
@@ -152,6 +157,6 @@ class FoodController extends Controller
     public function destroy($id)
     {
         Food::destroy($id);
-        return redirect('admin');
+        return redirect('admin')->with('message','The plate has been deleted');
     }
 }

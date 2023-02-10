@@ -28,7 +28,7 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect()->route('foods')->with('unauthorised', 'You are 
+        return redirect()->route('foods')->with('info', 'You are 
           unauthorised to access this page');
     }
     

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+
 
 class ProfileController extends Controller
 {
@@ -57,4 +59,19 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
+   public function addAdmin(){
+        $data = User::all();
+        return view('addadmin', ['data' => $data]);
+
+   }
+   public function storeAdmin(Request $request ){
+        $id = $request->input('id');
+       
+        User::where('id', $id)->update(array('role' => '1'));
+
+        return redirect()->route('dashboard');
+
+   }
 }
