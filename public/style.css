@@ -1,0 +1,81 @@
+/*
+! tailwindcss v3.2.7 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+*{
+    font-family: 'karla';
+  }
+  
+  
+  
+  body{
+    overflow-x: hidden;
+  
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  footer{
+    margin-top: auto;
+  }
+  
+  nav{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+  
+  }
+  
+  #nav{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+  
+  }
+  
+  .nav-link{
+    position: relative;
+  }
+  .nav-link::after{
+    opacity: 0;
+    transition: all 0.2s;
+  }
+  .nav-link:hover{
+    /* text-decoration: underline;
+    border-bottom: 2px solid; */
+  }
+  .nav-link:hover::after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: rgb(1, 174, 53);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .nav-link:hover::after{
+    opacity: 1;
+  }
+  
+  
+  
+  
+  .card:hover{
+    /* border-radius: 4px; */
+    border:none;
+    box-shadow: 2px 0px 5px 3px rgb(0, 146, 10);  
+    transform: scale(1.05);
+  /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  }
+  .ContactUs {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .theForm {
+    margin: auto;
+  }
+  
+  /* .testing img{
+    object-fit: cover;
+    height: 200px; 
+  } */

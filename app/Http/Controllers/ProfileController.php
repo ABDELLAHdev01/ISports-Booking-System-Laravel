@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('user.profile', [
             'user' => $request->user(),
         ]);
     }
@@ -39,6 +39,12 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function updatemore(ProfileUpdateRequest $request){
+
+        $request->user()->save();
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+
+    }
     /**
      * Delete the user's account.
      */

@@ -4,10 +4,55 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Full Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+
+{{-- 
+     'gender',
+        'birthDate',
+        'adress',
+        'phone',
+    --}}
+
+{{-- <div class="mt-4">
+<x-input-label for="gender" :value="__('Gender')" />
+<select class="block mt-1 w-full"  name="gender" :value="old('gender')">
+<option value="male">Male</option>    
+<option value="female">Female</option>    
+</select>   
+    <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+
+
+
+</div>
+
+        <!-- BirthDate -->
+        <div class="mt-4">
+            <x-input-label for="birthDate" :value="__('BirthDate')" />
+            <x-text-input id="birthDate" class="block mt-1 w-full" type="date" name="birthDate" :value="old('birthDate')" required autofocus />
+            <x-input-error :messages="$errors->get('birthDate')" class="mt-2" />
+
+        </div>
+
+        <!-- Adress -->
+
+        <div class="mt-4">
+            <x-input-label for="adress" :value="__('Adress')" />
+            <x-text-input id="adress" class="block mt-1 w-full" type="text" name="adress" :value="old('adress')" required autofocus />
+            <x-input-error :messages="$errors->get('adress')" class="mt-2" />
+        </div>
+
+        <!-- Phone -->
+
+        <div class="mt-4">
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus />
+            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+        </div>
+
+         --}}
 
         <!-- Email Address -->
         <div class="mt-4">

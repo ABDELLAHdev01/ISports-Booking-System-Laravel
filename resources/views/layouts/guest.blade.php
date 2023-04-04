@@ -17,7 +17,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
+    <body class="font-sans text-gray-900 antialiased" >
         <script>
             @if(Session::has('message'))
             toastr.options =
@@ -59,14 +59,14 @@
             @endif
           </script>  
     
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-orange-300" style="background-color: #F8EDE3">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-orange-300" style="background-color: #efefef">
             <div>
                 <a href="/">
-                    <img src="https://cdn.pixabay.com/photo/2016/05/26/14/11/chef-1417239_1280.png" alt="" width="250px">
+                    <img src="../yoga-g18d718c64_1280.png" alt="" width="250px">
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-orange-100 shadow-md overflow-hidden sm:rounded-lg" style="background-color: #85586F">
+            <div class="w-full sm:max-w-md mb-3 px-6 py-4 shadow-md overflow-hidden sm:rounded-lg " style="background-color: #243441;">
                 {{ $slot }}
             </div>
         </div>
