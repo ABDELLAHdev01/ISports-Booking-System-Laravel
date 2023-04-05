@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ISPORT  - Music</title>
+    <title>ISPORT  - Courses</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 </head>
 <body style="background-color: #efefef;">
  
-  
+
 @include('comp.userNav')
 @include('comp.sidbar')
 @if (Auth::user()->gender == '' )
@@ -39,69 +39,51 @@
 <!-- /#page-content-wrapper -->
 <div class="row mb-4">
 
-    <div class="mt-2">
-        {{-- <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-success">search</button>
-          </div> --}}
+    <div class="">
+     
+          </div>
     </div>
     {{-- h1 in green top coaches --}}
     {{--  --}}
-   <div class="mt-2">
- <div>
-    <h1 class="text-success">{{$article->title}}</h1>
-    <p class="text-muted">{{$article->created_at}}</p>
-    <div class="mb-3">
-      <img src="{{asset($article->image)}}" alt="" class="img-fluid">
-  
-     </div>
-    <div class="text-muted">
-        <p>{{$article->body}}</p>
- </div>
- {{-- tags --}}
-  <div class="mt-3">
-    <h3 class="text-success">Tags</h3>
-    <div class="row">
-      <div class="col">
-        <p class="text-muted"> {{$article->tags}}</p>
-      </div>
-    </div>
-  </div>
-  {{-- end tags --}}
-  {{-- comments --}}
+   <div class="">
+{{-- course page using data --}}
 
-
-
-   
-    
-        {{-- <div class="col">
-          <div class="card h-100">
-            <img src="https://cdn.becomeopedia.com/wp-content/uploads/Sports-Coach.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-            <div class="card-body">
-              <h5 class="card-title">Nadia DARIM</h5>
-              <p class="card-text">I am a female coach with 4 years of experience , i love Baskete-ball <3 </p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted"><i class="bi bi-check-all"></i> Online</small>
-            </div>
-          </div>
-        </div> --}}
-        {{-- <div class="col">
-          <div class="card h-100">
-            <img src="https://media.stack.com/stack-content/uploads/2020/02/11185812/Coach-Communication.jpg" class="card-img-top" alt="Palm Springs Road"/>
-            <div class="card-body">
-              <h5 class="card-title">Ahmad Yassin CHAFII</h5>
-              <p class="card-text">
-            I am a Foot-ball player & coach , i have 5 years of experience in the field of coaching. 
-              </p>
-            </div> --}}
-           
-          </div>
-        </div>
-      </div>
-   </div>
+<div class="coursetitle mb-1">
+    <h1 class="">{{$data->name}}</h1>
 
 </div>
+<div class="cousreimg">
+    {{-- centering the image --}}
+    {{-- make image small as thubmnail --}}
+
+
+    <div class="text-center">
+        <img src="{{$data->image}}" alt="" class="img-fluid w-50" >
+    </div>
+</div>
+<div class="courseinfo">
+    <div class="row">
+        <div class="col-lg-6">
+            <h3 class="mt-3">Course Description</h3>
+            <p class="mt-3">{{$data->description}}</p>
+        </div>
+        <div class="col-lg-6">
+            <h3 class="mt-3">Course Details</h3>
+            <p class="mt-3">Course Sport: {{$data->sport}}</p>
+            <p class="mt-3">Course Level: {{$data->level}}</p>
+            <p class="mt-3">Course Coach: {{$data->author}}</p>
+        </div>
+    </div>
+</div>
+<div class="coursecontent">
+    <h3 class="mt-3">Course Link</h3>
+    <button class=" btn btn-outline-success mt-3">GOOGLE DRIVE</button>
+</div> 
+
+    
+{{-- course image --}}
+
+
 {{-- top top courses --}}
 
 <!-- /#wrapper -->

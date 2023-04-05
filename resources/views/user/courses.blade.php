@@ -77,8 +77,11 @@
             <p class="card-text">
               {{$item->description}}            </p>
           </div>
-          <div class="card-footer">
-            <small class="text-muted"><i class="bi bi-pencil-square"></i>  {{$item->author}}  </small>
+          <div class="card-footer d-flex">
+           
+            <small class="text-muted"><i class="bi bi-pencil-square "></i>  {{$item->author}}  </small>
+              <a href="{{route('viewCourse',$item->id)}}" class="btn btn-success btn-sm ms-auto">View Course</a>
+            
           </div>
         </div>
       </div>

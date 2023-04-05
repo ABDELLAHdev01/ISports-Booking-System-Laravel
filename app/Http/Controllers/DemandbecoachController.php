@@ -14,7 +14,9 @@ class DemandbecoachController extends Controller
      */
     public function index()
     {
-        //
+        // get data where user == auth()->user()->id
+        $data = demandbecoach::where('coach_id', auth()->user()->id)->get();
+        return view('user.beacoach', compact('data'));
     }
 
     /**
@@ -36,6 +38,14 @@ class DemandbecoachController extends Controller
     public function store(Request $request)
     {
         //
+        $inputs = $request->all();
+        $inputs['name'] = auth()->user()->name;
+        $inputs['image'] = auth()->user()->image;
+        $inputs['email'] = auth()->user()->email;
+        $inputs['coach_id'] = auth()->user()->id;
+        demandbecoach::create($inputs);
+        return redirect()->back()->with('success', 'Your request has been sent successfully');
+
     }
 
     /**

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('sport');
             $table->string('description');
+            $table->string('email');
             $table->string('image');
             $table->string('location');
             $table->string('price');

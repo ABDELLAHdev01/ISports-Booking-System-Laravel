@@ -48,42 +48,74 @@
               <th>Name</th>
               <th>Sport</th>
               <th>Description</th>
-              <th>Letter</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
+            @foreach ($data as $item)
             <tr>
               <td>
                 <div class="d-flex align-items-center">
                   <img
-                      src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                      src="{{URL::asset('images')}}{{'/'.$item->image}}"
                       alt=""
                       style="width: 45px; height: 45px"
                       class="rounded-circle"
                       />
                   <div class="ms-3">
-                    <p class="fw-bold mb-1">John Doe</p>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
+                    <p class="fw-bold mb-1">{{$item->name}}</p>
+                    <p class="text-muted mb-0">{{$item->location}}</p>
                   </div>
                 </div>
               </td>
               <td>
-                <p class="fw-normal mb-1">Baskette-ball</p>
-                <p class="text-muted mb-0">4 years of experience</p>
+                <p class="fw-normal mb-1">{{$item->sport}}</p>
+                <p class="text-muted mb-0">{{$item->yearsofexperience}} Years</p>
               </td>
               <td>
-                  <button class="btn btn-sm btn-outline-success"><i class="bi bi-eye-fill"></i> Read</button>
-              </td>
+                  {{-- <button class="btn btn-sm btn-outline-success"><i class="bi bi-eye-fill"></i> Read</button> --}}
+             <!-- Button trigger modal -->
+<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->id}}" class="btn btn-sm btn-outline-success">
+  <i class="bi bi-eye-fill"></i> Read
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 999999999">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-clipboard-fill"></i> Description</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          @csrf
+        <label for="sport">
+          
+            <h5 class="text-success">Description :</h5>
+            <p class="text-muted">{{$item->description}} </p>
+          </label>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+                </td>
+             
               <td>
-                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye-fill"></i> Read</button>
-              </td>
-              <td>
-                <button type="button" class="btn  btn-sm btn-success ">
-                  <i class="bi bi-check-square"></i>  Accept
-                </button>
+                <form action="{{route('acceptcoach')}}" method="post">
+                  @csrf
+                  <input type="hidden" name="id" value="{{$item->id}}">
+                  <button type="submit" class="btn  btn-sm btn-success ">
+                    <i class="bi bi-check-square"></i>  Accept
+                  </button>
+                </form>
               </td>
             </tr>
+            @endforeach
+          
          
           </tbody>
         </table>

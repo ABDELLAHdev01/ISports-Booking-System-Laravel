@@ -21,6 +21,46 @@
 
 @endif
 
+{{-- if theres data count > 1 sweat alert--}}
+@if (count($data) > 1)
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: 'you have already apply for coaching',
+
+})
+  </script>
+@endif
+
+
+{{-- if success a sweat alert --}}
+
+
+
+@if (session('success'))
+{{-- cdn sweet alert --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // image in the sweet alert
+  Swal.fire({
+icon: 'success',
+title: 'Good job!',
+text: 'you have apply for coaching',
+
+
+})
+  </script>
+@endif
+{{-- if success a sweat alert --}}
+
+{{-- if success a sweat alert --}}
+
 <div id="page-content-wrapper">
     <div class="container mt-5  ">
         <div class="row">
@@ -44,6 +84,19 @@
     </div>
     {{-- h1 in green top coaches --}}
     {{--  --}}
+    @if (count($data) > 0)
+    <div class="col-md-12">
+        <h1 class="text-success">Your Coaching Application</h1>
+        <p class="text-dark">You have already applied for coaching. We will contact you soon.</p> 
+    </div>
+    <div class="imageGif">
+        <img src="https://64.media.tumblr.com/20bc582f7f3d22b8b3c65408bdffa7bb/fb0eba7a92a04691-54/s540x810/93301ec2be5458211b6a8f1432fe2204a91fb9c1.gif" alt="" class="img-fluid ">
+    </div>
+
+        
+    @else
+        
+    
    <div class="">
     <div class="firstSection" id="home">
         <div class="container ">
@@ -93,7 +146,7 @@
 
 </div>
 {{-- top top courses --}}
-
+@endif
 <!-- /#wrapper -->
 @include('comp.jq')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -113,19 +166,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <form action="{{route('applycoaching')}}" method="post">
+          @csrf
         <label for="sport">
             <h5 class="text-success">Sport :</h5>
-         <input type="text" class="form-control" id="sport" placeholder="Sport">
+         <input type="text" name="sport" class="form-control" id="sport" placeholder="Sport">
         </label>
         {{-- years of experience --}}
         <label for="experience">
             <h5 class="text-success">Years of experience :</h5>
-            <input type="number" class="form-control" id="experience" placeholder="Years of experience">
+            <input type="number" class="form-control" name="yearsofexperience" id="experience" placeholder="Years of experience">
         </label>
         {{-- localitaion --}}
         <label for="location">
             <h5 class="text-success">Location :</h5>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="location">
                 <option selected>Open this select menu</option>
                 {{-- morocco citys as options value is the name of city --}}
                 <option value="Casablanca">Casablanca</option>
@@ -147,17 +202,18 @@
        {{-- price par hour --}}
         <label for="price">
           <h5 class="text-success">Price per hour :</h5>
-          <input type="number" class="form-control" id="price" placeholder="Price per hour">
+          <input type="number" class="form-control" id="price" name="price" placeholder="Price per hour">
         </label>
         <label for="motivation">
           <h5 class="text-success">Description :</h5>
-          <textarea class="form-control" placeholder="make sure to write a good description about you it will be shown to clients" id="exampleFormControlTextarea1" rows="8" cols="50" ></textarea>
+          <textarea class="form-control" name="description" placeholder="make sure to write a good description about you it will be shown to clients" id="exampleFormControlTextarea1" rows="8" cols="50" ></textarea>
       </label>
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Apply</button>
+        <button type="submit" class="btn btn-success">Apply</button>
+      </form>
       </div>
     </div>
   </div>

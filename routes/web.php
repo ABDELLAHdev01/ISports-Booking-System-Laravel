@@ -10,7 +10,10 @@ use App\Http\Controllers\CoachController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DemandbecoachController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +29,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('admin');
+
 
 
 
@@ -45,17 +46,12 @@ Route::get('/admin', function () {
 
 // });
 
-Route::get('/dashboard', function() {
-    return view('user.dashboard');
-})->name('dashboard');
 
 
 
 
 
-Route::get('/dashboard/becoach', function() {
-    return view('user.beacoach');
-})->name('user.beacoach');
+
 
 
 
@@ -63,6 +59,9 @@ Route::get('/dashboard/becoach', function() {
 
 
 Route::middleware(['auth'])->group(function () {
+// user routes
+Route::middleware(['isUser'])->group(function () {
+Route::get('/dashboard', function() { return view('user.dashboard');})->name('dashboard');
 Route::get('/dashboard/profile', function() { return view('user.profile'); })->name('user.profile');
 Route::get('/dashboard', [userInfo::class , 'index'])->name('dashboard');
 Route::get('/dashboard/courses', [CourseController::class , 'index'])->name('searchCourses');
@@ -75,10 +74,20 @@ Route::get('/dashboard/coaches',[CoachController::class, 'index'])->name('search
 Route::get('/dashboard/coach/{id}',[CoachController::class, 'show'])->name('showacoach');
 Route::post('/dashboard/coach/book',[CoachController::class, 'store'])->name('booking');
 Route::get('/dashboard/coach/search',[CoachController::class, 'search'])->name('searchcoach');
+Route::get('/dashboard/course/{id}',[CourseController::class, 'show'])->name('viewCourse');
+Route::post('/dashboard/applycoaching',[DemandbecoachController::class, 'store'])->name('applycoaching');
+Route::get('/dashboard/applycoaching',[DemandbecoachController::class, 'index'])->name('applycoachingindex');
+});
+// admin routes
+Route::middleware(['isAdmin'])->group(function () {
+    Route::get('/admin',[adminController::class, 'index'])->name('acceptcoach');
+    Route::get('/admin/coaches',[adminController::class, 'acceptcoach'])->name('acceptcoach');
+
+    Route::post('/admin/acceptcoach',[adminController::class, 'acceptandemailing'])->name('acceptcoach');
+   
+});
 // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // route::get('show/{id}', [FoodController::class, 'showw'])->name('showw');
-
-
 });
 
 // admin routes

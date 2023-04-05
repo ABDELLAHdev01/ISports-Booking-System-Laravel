@@ -12,6 +12,8 @@ class demandbecoach extends Model
     protected $fillable = [
         
         "sport",
+        "name",
+        "email",
         "description",
         "image",
         "location",
