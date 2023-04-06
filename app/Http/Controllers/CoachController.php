@@ -31,6 +31,20 @@ class CoachController extends Controller
         //
     }
 
+    public function dashboard(){
+        $data = coach::where('user_id', auth()->user()->id)->first();
+        $bookings = booking::where('coach_id', $data->id)->get();
+        // accepted bookings
+        $accepted = booking::where('coach_id', $data->id)->where('status', 'accepted')->get();
+        // pending bookings
+        $pending = booking::where('coach_id', $data->id)->where('status', 'pending')->get();
+        // rejected booking
+        $rejected = booking::where('coach_id', $data->id)->where('status', 'rejected')->get();
+
+        return view('coach.dashboard', compact('data', 'bookings', 'accepted', 'pending', 'rejected'));
+       
+    }
+
     /**
      * Store a newly created resource in storage.
      *

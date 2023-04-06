@@ -61,7 +61,7 @@
               
               <a href="/dashboard/coach/{{$item->id}}">
                 
-              <img src="{{$item->image}}" class="card-img-top" alt="Skyscrapers"/ >
+              <img src="{{URL::asset("images/$item->image")}}" class="card-img-top" alt="Skyscrapers"/ >
               
             </a>
             

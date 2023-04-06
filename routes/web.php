@@ -80,10 +80,18 @@ Route::get('/dashboard/applycoaching',[DemandbecoachController::class, 'index'])
 });
 // admin routes
 Route::middleware(['isAdmin'])->group(function () {
-    Route::get('/admin',[adminController::class, 'index'])->name('acceptcoach');
-    Route::get('/admin/coaches',[adminController::class, 'acceptcoach'])->name('acceptcoach');
+    Route::get('/admin',[adminController::class, 'index'])->name('acceptcoachh');
+    Route::get('/admin/coaches',[adminController::class, 'acceptcoach'])->name('acceptcoaching');
 
     Route::post('/admin/acceptcoach',[adminController::class, 'acceptandemailing'])->name('acceptcoach');
+   
+});
+
+
+// coach routes
+Route::middleware(['isCoach'])->group(function () {
+    Route::get('/coach',[coachController::class, 'dashboard'])->name('dashboard.coach');
+    
    
 });
 // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
