@@ -4,13 +4,13 @@ Our website is a platform that connects sports coaches with individuals looking 
 #                                                       Our website offers :
 1 - User registration and login: The website should allow users to create an account and log in to their account.
 
-2 - Search and filter coaches: Users should be able to search for coaches based on location, sport, and availability. 
+2 - Search and filter coaches: Users should be able to search for coaches based on location and sport. 
 
-3 - Booking a session: Once a user has found a coach they would like to work with, they should be able to book a session with that coach, either in-person or online. This should include selecting the date and time of the session, as well as the duration.
+3 - Booking a session: Once a user has found a coach they would like to work with, they should be able to book a session with that coach, either in-person . This should include selecting the date and time of the session.
 
-4 - Review and rating system: Users should be able to leave reviews and ratings for coaches they have worked with, which should be visible to other users.
+4 - Review system: Users should be able to leave reviews for coaches they have worked with, which should be visible to other users.
 
-5 - Online classes: The website should allow users to sign up for and participate in online classes with coaches.
+5 - Online Courses: The website should allow users to get access to coach's free courses.
 
 6 - Assessment quiz: The website should include a quiz that asks users about their height, weight, and other relevant factors to determine the best training plan for their needs. 
 
