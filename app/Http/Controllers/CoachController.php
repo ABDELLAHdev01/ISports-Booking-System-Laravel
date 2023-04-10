@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\coach;
-use App\Models\booking;
 
+use App\Models\Course;
+use App\Mail\TestEmail;
+use App\Models\booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CoachController extends Controller
 {
@@ -29,6 +32,42 @@ class CoachController extends Controller
     public function create()
     {
         //
+    }
+
+    public function acceptBooking($id){
+        $booking = booking::find($id);
+        $booking->status = 'accepted';
+        $booking->save();
+        // send email to the user that his booking has been accepted
+        $details = [
+            'title' => 'Booking accepted',
+            'image' => 'https://thumbs.gfycat.com/ComfortableRealisticGuanaco-max-1mb.gif',
+            'button' => '0',
+
+            'body' => 'Your booking has been accepted by the coach'
+            
+        ];
+        Mail::to($booking->email)->send(new \App\Mail\TestEmail($details));
+
+        return redirect()->back()->with('success', 'Booking accepted');
+    }
+
+        public function rejectBooking($id){
+        $booking = booking::find($id);
+        $booking->status = 'rejected';
+        $booking->save();
+        // send email to the user that his booking has been rejected
+        $details = [
+            'title' => 'Booking rejected',
+            'image' => 'https://media.tenor.com/YFhAP8U26GQAAAAM/rejected-stamp.gif',
+            'button' => '0',
+
+            'body' => 'Your booking has been rejected by the coach'
+            
+        ];
+        Mail::to($booking->email)->send(new \App\Mail\TestEmail($details));
+
+        return redirect()->back()->with('success', 'Booking rejected');
     }
 
     public function dashboard(){
@@ -78,7 +117,9 @@ class CoachController extends Controller
         return redirect()->back()->with('success', 'Your booking has been sent to the coach');
     }
 
-
+    public function addcourse(){
+        return view('coach.addcourse');
+    }
     public function search(Request $request){
         $inputs = $request->all();
         // find coaches where there names like search input or sport like search input
@@ -132,5 +173,63 @@ class CoachController extends Controller
     public function destroy(coach $coach)
     {
         //
+    }
+
+    public function mycourses(){
+        // find course where the user_id = auth user id
+        $data = Course::where('user_id', auth()->user()->id)->get();
+        return view('coach.mycourses', compact('data'));
+    }
+
+    public function addacourse(Request $request){
+        // validation 
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'level' => 'required',
+        ]);
+        $inputs = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $inputs['image'] = "$profileImage";
+ 
+          
+        }
+        $inputs['user_id'] = auth()->user()->id;
+        $inputs['author'] = auth()->user()->name;
+      
+
+        Course::create($inputs);
+        return redirect()->route('mycourses')->with('addedd', 'Course added');
+    }
+
+    public function deletecourse($id){
+        $data = Course::find($id);
+        $data->delete();
+        return redirect()->back()->with('deleted', 'Course deleted');
+    }
+    public function editcourse(request $request){
+        $data = Course::find($request->id);
+        return view('coach.editcourse', compact('data'));
+    }
+    public function updatecourse(Request $request){
+        $inputs = $request->all();
+        $data = Course::find($request->id);
+        $data->name = $inputs['name'];
+        $data->description = $inputs['description'];
+        $data->level = $inputs['level'];
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $inputs['image'] = "$profileImage";
+            $data->image = $inputs['image'];
+          
+        }
+        $data->save();
+        return redirect()->route('mycourses')->with('updated', 'Course updated');
     }
 }

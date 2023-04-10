@@ -16,6 +16,35 @@
   
 @include('comp.userNav')
 @include('comp.sidbar')
+
+@if(session('status'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  Swal.fire(
+    'Good job!',
+    'Your quiz has been submitted successfully !',
+    'success'
+  )
+</script>
+
+@endif
+@if (Auth::user()->quizstatus == '0' )
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  Swal.fire(
+    // redirect it to the profile page
+  'Hey! {{Auth::user()->name}}',
+  'please complete your quiz !',
+  'warning'
+).then(function() {
+    window.location = "/quiz";
+});
+
+</script>
+
+@endif
 @if (Auth::user()->gender == ''  )
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

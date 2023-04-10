@@ -164,7 +164,7 @@
                   <a href="{{route('dashboard.coach')}}"><i class="bi bi-calendar-check"></i> Accept Booking</a>
               </li>
               <li>
-                <a href=""><i class="bi bi-pencil-square"></i> Add Course</a>
+                <a href="{{route('mycourses')}}"><i class="bi bi-pencil-square"></i> Your Course</a>
             </li>
               {{-- <li>
                   <a href="{{route('user.articles')}}"><i class="bi bi-body-text"></i> Articles</a>

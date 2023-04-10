@@ -16,7 +16,7 @@
 
 @include('comp.userNav')
 @include('comp.sidbar')
-@if (Auth::user()->gender == '' )
+@if (Auth::user()->gender == '' || Auth::user()->quizstatus == '0' )
 <script>window.location = "/dashboard";</script>
 
 @endif
@@ -58,7 +58,7 @@
 
 
     <div class="text-center">
-        <img src="{{$data->image}}" alt="" class="img-fluid w-50" >
+        <img src="{{asset('images/'.$data->image)}}" alt="" class="img-fluid w-50" >
     </div>
 </div>
 <div class="courseinfo">
@@ -69,7 +69,6 @@
         </div>
         <div class="col-lg-6">
             <h3 class="mt-3">Course Details</h3>
-            <p class="mt-3">Course Sport: {{$data->sport}}</p>
             <p class="mt-3">Course Level: {{$data->level}}</p>
             <p class="mt-3">Course Coach: {{$data->author}}</p>
         </div>
@@ -77,7 +76,7 @@
 </div>
 <div class="coursecontent">
     <h3 class="mt-3">Course Link</h3>
-    <button class=" btn btn-outline-success mt-3">GOOGLE DRIVE</button>
+    <a target="_blank" href="{{$data->link}}" class=" btn btn-outline-success mt-3">GOOGLE DRIVE</a>
 </div> 
 
     

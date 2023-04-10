@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('author');
-            $table->string('description');
+            $table->text('description');
             $table->string('link');
             $table->string('level');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

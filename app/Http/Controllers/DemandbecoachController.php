@@ -38,6 +38,12 @@ class DemandbecoachController extends Controller
     public function store(Request $request)
     {
         //
+        // validate
+        $request->validate([
+            
+            
+            'description' => 'required',
+        ]);
         $inputs = $request->all();
         $inputs['name'] = auth()->user()->name;
         $inputs['image'] = auth()->user()->image;

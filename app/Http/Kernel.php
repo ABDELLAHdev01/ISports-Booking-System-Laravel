@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\isQuizDone;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\checkRole;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -69,5 +70,6 @@ class Kernel extends HttpKernel
         'isUser' => Middleware\isUser::class,
         'isAdmin' => Middleware\isAdmin::class,
         'isCoach' => Middleware\isCoach::class,
+        'isQuizDone' => isQuizDone::class,
     ];
 }

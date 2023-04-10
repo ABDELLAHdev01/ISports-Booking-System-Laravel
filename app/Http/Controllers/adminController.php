@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\coach;
+use App\Models\Course;
 use App\Mail\TestEmail;
 use Illuminate\Http\Request;
 use App\Models\demandbecoach;
@@ -18,7 +19,8 @@ class adminController extends Controller
      */
     public function index()
     {
-        $data = demandbecoach::orderBy('created_at', 'desc')->get();
+        // get data orderBy('created_at', 'desc') and where status == pending and paginate
+        $data = demandbecoach::orderBy('created_at', 'desc')->where('status', 'pending')->paginate(10);
         return view('admin.acceptcoach', compact('data'));
         //
     }
@@ -109,13 +111,34 @@ class adminController extends Controller
         $mailData = [
             "name" => "$data->name",
             "dob" => "12/12/1990",
-            "description" => "you are accepted as a coach",
+            'image' => 'https://media.tenor.com/2xfw9AtV19EAAAAS/hired-excited.gif',
+            'button' => '1',
+            "body" => "you are accepted as a coach",
         ];
     
         Mail::to("$data->email")->send(new TestEmail($mailData));
     
         return redirect()->back()->with('success', 'Coach accepted successfully');
     }
+
+    public function rejectcoach(Request $request)
+    {
+        $data = demandbecoach::find($request->id);
+        $data->status = "rejected";
+        $data->save();
+        // send notification email to user that his request has been rejected
+        $mailData = [
+            "name" => "$data->name",
+            "dob" => "12/12/1990",
+            'image' => 'https://media.tenor.com/qn-45RI4FNoAAAAd/request-denied-tom-welling.gif',
+            'button' => '1',
+            "body" => "you are rejected as a coach",
+        ];
+    
+        Mail::to("$data->email")->send(new TestEmail($mailData));
+        return redirect()->back()->with('delete', 'Coach rejected successfully');
+    }
+    
     /**
      * Update the specified resource in storage.
      *
@@ -134,8 +157,34 @@ class adminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showallcoaches()
+    {
+        $data = coach::orderBy('created_at', 'desc')->paginate(999);
+        return view('admin.showallcoaches', compact('data'));
+    }
     public function destroy($id)
     {
-        //
+        // find coach by user_id
+        $coach = coach::where('user_id', $id)->first();
+        // delete coach
+        $coach->delete();
+        // update role user by id
+        $user = User::find($id);
+        $user->role = "user";
+        $user->save();
+        return redirect()->back()->with('delete', 'Coach deleted successfully');
+    }
+
+    public function showCourses()
+    {
+        $data = Course::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.deletecourse', compact('data'));
+    }
+
+    public function deleteCourse($id)
+    {
+        $data = Course::find($id);
+        $data->delete();
+        return redirect()->back()->with('delete', 'Course deleted successfully');
     }
 }

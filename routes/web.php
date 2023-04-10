@@ -1,7 +1,10 @@
 <?php
 
+use App\Mail\TestEmail;
 use App\Models\Article;
 use App\Http\Controllers\userInfo;
+use App\Http\Middleware\isQuizDone;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DaysController;
 use App\Http\Controllers\FoodController;
@@ -12,8 +15,6 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DemandbecoachController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
-use App\Mail\TestEmail;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,8 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 // user routes
 Route::middleware(['isUser'])->group(function () {
+Route::get('/quiz', function() { return view('user.quiz');})->name('quiz'); 
+Route::post('/quizend', [userInfo::class, 'quizend'])->name('quizzdone');  
 Route::get('/dashboard', function() { return view('user.dashboard');})->name('dashboard');
 Route::get('/dashboard/profile', function() { return view('user.profile'); })->name('user.profile');
 Route::get('/dashboard', [userInfo::class , 'index'])->name('dashboard');
@@ -82,8 +85,12 @@ Route::get('/dashboard/applycoaching',[DemandbecoachController::class, 'index'])
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin',[adminController::class, 'index'])->name('acceptcoachh');
     Route::get('/admin/coaches',[adminController::class, 'acceptcoach'])->name('acceptcoaching');
-
+    Route::post('/admin/rejectcoach',[adminController::class, 'rejectcoach'])->name('rejectcoach');
     Route::post('/admin/acceptcoach',[adminController::class, 'acceptandemailing'])->name('acceptcoach');
+    Route::get('/admin/allcoaches',[adminController::class, 'showallcoaches'])->name('showcoach');
+    Route::get('/admin/coaches/{id}',[adminController::class, 'destroy'])->name('deletecoach');
+    Route::get('/admin/courses',[adminController::class, 'showCourses'])->name('showCourses');
+    Route::get('/admin/course/{id}',[adminController::class, 'deleteCourse'])->name('deleteCourse');
    
 });
 
@@ -91,6 +98,16 @@ Route::middleware(['isAdmin'])->group(function () {
 // coach routes
 Route::middleware(['isCoach'])->group(function () {
     Route::get('/coach',[coachController::class, 'dashboard'])->name('dashboard.coach');
+    Route::get('/coach/accept/{id}',[coachController::class, 'acceptBooking'])->name('accept');
+    Route::get('/coach/reject/{id}',[coachController::class, 'rejectBooking'])->name('reject');
+    Route::get('/coach/addcourse',[coachController::class, 'addcourse'])->name('addcourse');
+    Route::get('/coach/mycourses',[coachController::class, 'mycourses'])->name('mycourses');
+    Route::post('/coach/addcourse',[coachController::class, 'addacourse'])->name('storecourse');
+    Route::get('/coach/mycourses/{id}',[coachController::class, 'deletecourse'])->name('deletecourse');
+    Route::post('/coach/mycourses/edit',[coachController::class, 'editcourse'])->name('editcourse');
+    // update route
+    Route::post('/coach/mycourses/update',[coachController::class, 'updatecourse'])->name('updatecourse');
+    
     
    
 });

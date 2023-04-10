@@ -15,7 +15,9 @@ class Course extends Model
         'image',
         'location',
         'price',
-        'rating',
+        'author',
+        'link',
+        'level',
         'user_id',
         'sport_id',
     ];

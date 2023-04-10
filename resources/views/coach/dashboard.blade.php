@@ -116,29 +116,28 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach ($pending as $item)
+                    
                 <tr>
                     <td>
                       <div class="d-flex align-items-center">
-                        <img
-                            src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                            alt=""
-                            style="width: 45px; height: 45px"
-                            class="rounded-circle"
-                            />
+                      
                         <div class="ms-3">
-                          <p class="fw-bold mb-1">eferferferf</p>
-                          <p class="text-muted mb-0">eferfef</p>
+                          <p class="fw-bold mb-1">{{$item->name}}</p>
+                          <p class="text-muted mb-0">{{$item->phone}}</p>
                         </div>
                       </div>
                     </td>
-                    <td>2021-09-09</td>
-                    <td>09:00</td>
+                    <td>{{$item->date}}</td>
+                    <td>{{$item->time}}</td>
                     <td>
                       <div class="d-flex">
-                        <a href="#" class="btn btn-success btn-sm me-2"><i class="bi bi-calendar-check-fill"></i> Accept</a>
-                        <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-x-circle-fill"></i> Reject</a>
+                        <a href="{{route('accept',$item->id)}}" class="btn btn-success btn-sm me-2"><i class="bi bi-calendar-check-fill"></i> Accept</a>
+                        <a href="{{route('reject',$item->id)}}" class="btn btn-danger btn-sm"><i class="bi bi-x-circle-fill"></i> Reject</a>
                       </div>
                 </tr>
+                @endforeach
+
    </div>
 
 </div>

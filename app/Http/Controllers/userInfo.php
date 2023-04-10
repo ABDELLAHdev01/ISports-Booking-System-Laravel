@@ -79,10 +79,26 @@ class userInfo extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     public function quizend(Request $request){
+        // change user quizstatus to 1
+        $user = User::find(Auth::user()->id);
+        $user->quizstatus = 1;
+        $user->bmi = $request->bmi;
+        $user->save();
+        // redirect to dashboard
+        return redirect()->route('dashboard')->with('status', 'Your quiz has been submitted successfully !');
+     }
     public function update(Request $request)
     {
         // edit user info 
         // User::update($request->all());
+        // validate
+        $request->validate([
+            'name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+     
+        ]);
         $User = User::find(Auth::user()->id);
         $input = $request->all();
 

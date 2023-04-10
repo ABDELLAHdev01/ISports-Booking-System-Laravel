@@ -12,6 +12,31 @@
         <link rel="icon" href="{{URL::asset('images/2304226.png')}}" type="image/png">
     </head>
 <body style="background-color: #efefef;">
+{{-- if session success --}}
+@if (session('success'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  Swal.fire({
+icon: 'success',
+title: 'Good job!',
+text: 'you have accepted the coach',
+})
+  </script>
+@endif
+@if (session('delete'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  Swal.fire({
+icon: 'success',
+title: 'Good job!',
+text: 'you have deleted the coach',
+})
+  </script>
+  
+    
+@endif
     @include('comp.adminnav')
     @include('comp.adminSide')
     <div id="page-content-wrapper">
@@ -31,13 +56,7 @@
     </div>
     <!-- /#page-content-wrapper -->
     <div class="row mb-4">
-      <div class="mt-2">
-        <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-success">search</button>
-          </div>
-          
-    </div>
+    
     {{-- h1 
         {{-- h1 in green top coaches --}}
         {{--  --}}
@@ -79,6 +98,7 @@
   <i class="bi bi-eye-fill"></i> Read
 </button>
 
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 999999999">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -112,6 +132,12 @@
                     <i class="bi bi-check-square"></i>  Accept
                   </button>
                 </form>
+                <form action="{{route('rejectcoach')}}" method="post">
+                  @csrf
+                  <input type="hidden" name="id" value="{{$item->id}}">
+                  <button type="submit" class="btn  btn-sm btn-danger ">
+                    <i class="bi bi-x-square"></i>  Reject
+                  </button>
               </td>
             </tr>
             @endforeach
@@ -119,6 +145,9 @@
          
           </tbody>
         </table>
+
+      
+
             {{-- <div class="col">
               <div class="card h-100">
                 <img src="https://cdn.becomeopedia.com/wp-content/uploads/Sports-Coach.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>

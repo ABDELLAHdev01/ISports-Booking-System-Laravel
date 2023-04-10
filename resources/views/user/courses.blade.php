@@ -16,7 +16,7 @@
 
 @include('comp.userNav')
 @include('comp.sidbar')
-@if (Auth::user()->gender == '' )
+@if (Auth::user()->gender == '' || Auth::user()->quizstatus == '0' )
 <script>window.location = "/dashboard";</script>
 
 @endif
@@ -71,11 +71,11 @@
       @foreach ($data as $item)
       <div class="col">
         <div class="card h-100">
-          <img src="{{$item->image}}" class="card-img-top" alt="Skyscrapers"/>
+          <img src="{{asset('images/'.$item->image)}}" class="card-img-top" alt="Skyscrapers"/>
           <div class="card-body">
             <h5 class="card-title">{{$item->name}}</h5>
             <p class="card-text">
-              {{$item->description}}            </p>
+              {{$item->level}}            </p>
           </div>
           <div class="card-footer d-flex">
            

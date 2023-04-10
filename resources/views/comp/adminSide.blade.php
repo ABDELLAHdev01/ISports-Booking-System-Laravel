@@ -152,17 +152,15 @@
              <p class="text-white"> 👋 {{Auth::user()->name}}</p>
           </div>
               <li>
-                  <a href="{{route('acceptcoach')}}"><i class="bi bi-person-check"></i> Accept coachs</a>
+                  <a href="{{route('acceptcoachh')}}"><i class="bi bi-person-check"></i> Accept coachs</a>
               </li>
               <li>
-                  <a href="{{route('profile.edit')}}"><i class="bi bi-person-fill-gear"></i> Edit coachs</a>
+                  <a href="{{route('showcoach')}}"><i class="bi bi-trash3-fill"></i> Delete coachs</a>
               </li>
               <li>
-                  <a href="{{route('profile.edit')}}"><i class="bi bi-vector-pen"></i> Edit Article / Courses</a>
+                  <a href="{{route('showCourses')}}"><i class="bi bi-vector-pen"></i> Delete Course </a>
               </li>
-              <li>
-                  <a href="{{route('profile.edit')}}"><i class="bi bi-person-gear"></i> Edit users</a>
-              </li>
+     
              
              
            
