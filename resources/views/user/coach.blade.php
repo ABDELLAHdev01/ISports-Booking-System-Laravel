@@ -82,7 +82,7 @@ text: 'you have booked a session',
 <div class="p-4 mb-3" style="background: white;">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="{{$data->image}}" class="card-img" alt="">
+        <img src="/images/{{$data->image}}" class="card-img" alt="">
       </div>
       <div class="col-md-8">
         <div class="card-body">

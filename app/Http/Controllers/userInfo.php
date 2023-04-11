@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\coach;
 use App\Models\User;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -18,11 +19,15 @@ class userInfo extends Controller
      */
     public function index(Request $request)
     {
-        $data = Course::limit(3)->get();
-        return view('user.dashboard', [
-            'user' => $request->user(),
-            'data' => $data,
-        ]);
+        $user = User::find(Auth::user()->id);
+        // all coaches but only last 3
+        $coaches = coach::all()->take(3);
+        // all courses but only last 3
+        $courses = Course::all()->take(3);
+        // return
+        return view('user.dashboard', compact('user', 'coaches', 'courses'));
+        
+      
         
     }
 

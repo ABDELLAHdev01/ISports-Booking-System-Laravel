@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['isUser'])->group(function () {
 Route::get('/quiz', function() { return view('user.quiz');})->name('quiz'); 
 Route::post('/quizend', [userInfo::class, 'quizend'])->name('quizzdone');  
-Route::get('/dashboard', function() { return view('user.dashboard');})->name('dashboard');
+// Route::get('/dashboard',[userInfo::class, 'Dashboarding'])->name('dashboard');
 Route::get('/dashboard/profile', function() { return view('user.profile'); })->name('user.profile');
 Route::get('/dashboard', [userInfo::class , 'index'])->name('dashboard');
 Route::get('/dashboard/courses', [CourseController::class , 'index'])->name('searchCourses');
@@ -76,7 +76,7 @@ Route::get('/dashboard/course', [CourseController::class, 'search'])->name('user
 Route::get('/dashboard/coaches',[CoachController::class, 'index'])->name('searchCoaches');
 Route::get('/dashboard/coach/{id}',[CoachController::class, 'show'])->name('showacoach');
 Route::post('/dashboard/coach/book',[CoachController::class, 'store'])->name('booking');
-Route::get('/dashboard/coach/search',[CoachController::class, 'search'])->name('searchcoach');
+Route::post('/dashboard/coach/search',[CoachController::class, 'search'])->name('searchingfoacoach');
 Route::get('/dashboard/course/{id}',[CourseController::class, 'show'])->name('viewCourse');
 Route::post('/dashboard/applycoaching',[DemandbecoachController::class, 'store'])->name('applycoaching');
 Route::get('/dashboard/applycoaching',[DemandbecoachController::class, 'index'])->name('applycoachingindex');

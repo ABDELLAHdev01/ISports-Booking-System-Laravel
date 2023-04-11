@@ -37,7 +37,7 @@
            
 </div>
 <!-- /#page-content-wrapper -->
-<div class="row mb-4">
+<div class="row ">
 
     <div class="">
      
@@ -48,38 +48,36 @@
    <div class="">
 {{-- course page using data --}}
 
-<div class="coursetitle mb-1">
-    <h1 class="">{{$data->name}}</h1>
 
-</div>
-<div class="cousreimg">
     {{-- centering the image --}}
     {{-- make image small as thubmnail --}}
 
 
-    <div class="text-center">
-        <img src="{{asset('images/'.$data->image)}}" alt="" class="img-fluid w-50" >
-    </div>
-</div>
-<div class="courseinfo">
-    <div class="row">
-        <div class="col-lg-6">
-            <h3 class="mt-3">Course Description</h3>
-            <p class="mt-3">{{$data->description}}</p>
-        </div>
-        <div class="col-lg-6">
-            <h3 class="mt-3">Course Details</h3>
-            <p class="mt-3">Course Level: {{$data->level}}</p>
-            <p class="mt-3">Course Coach: {{$data->author}}</p>
-        </div>
-    </div>
-</div>
-<div class="coursecontent">
-    <h3 class="mt-3">Course Link</h3>
-    <a target="_blank" href="{{$data->link}}" class=" btn btn-outline-success mt-3">GOOGLE DRIVE</a>
-</div> 
+  
 
-    
+<center>
+    <div class="col-7">
+        <div class="card">
+          <img src="{{asset('images/'.$data->image)}}" class="card-img-top" alt="Hollywood Sign on The Hill"/>
+          <div class="card-body">
+            <h5 class="card-title">{{$data->name}}</h5>
+            <p class="card-text">
+                {{$data->description}}
+            </p>
+            <hr>
+            <div class="">
+                <h3 class="mt-3">Course Details</h3>
+                <p class="mt-3">Course Level: {{$data->level}}</p>
+                <p class="mt-3">Course Coach: <a href="/dashboard/coach/{{$data->id}}">  {{$data->author}} </a></p>
+            </div>
+
+            <div>
+                <a target="_blank" href="{{$data->link}}" class="btn btn-success btn-sm w-100"><i class="bi bi-play-circle"></i> WATCH</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</center>
 {{-- course image --}}
 
 

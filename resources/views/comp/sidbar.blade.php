@@ -183,7 +183,7 @@ background: none;
             
            
             <li>
-                <a href="#"><i class="bi bi-question-circle"></i> Support</a>
+                <a href="404"><i class="bi bi-question-circle"></i> Support</a>
             </li>
         </ul>
     </div>

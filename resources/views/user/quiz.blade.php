@@ -13,21 +13,18 @@
 </head>
 <body style="background-color: #efefef;">
  
-  
+{{--   
 @include('comp.userNav')
-@include('comp.sidbar')
-@if (Auth::user()->gender == '' )
-<script>window.location = "/dashboard";</script>
+@include('comp.sidbar') --}}
 
-@endif
 
 <div id="page-content-wrapper">
     <div class="container mt-5  ">
         <div class="row">
-            <div class="col-lg-12">
+            {{-- <div class="col-lg-12">
                 <a href="#menu-toggle" class=" text-success " id="menu-toggle"><svg class="mt-2 mb-2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-toggles" viewBox="0 0 16 16">
                     <path d="M4.5 9a3.5 3.5 0 1 0 0 7h7a3.5 3.5 0 1 0 0-7h-7zm7 6a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm-7-14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm2.45 0A3.49 3.49 0 0 1 8 3.5 3.49 3.49 0 0 1 6.95 6h4.55a2.5 2.5 0 0 0 0-5H6.95zM4.5 0h7a3.5 3.5 0 1 1 0 7h-7a3.5 3.5 0 1 1 0-7z"/>
-                  </svg></i></a>
+                  </svg></i></a> --}}
 
                 {{-- <h1>Welcome to Your Coaching Dashboard</h1>
                 
@@ -37,6 +34,19 @@
            
 </div>
 <style>
+  	body{
+	 background-color: #000000;
+   padding: 0px;
+   margin: 0px;
+ }
+
+#gradient
+{
+  width: 100%;
+  height: 800px;
+  padding: 0px;
+  margin: 0px;
+}
     #quiz {
   margin: 0 auto;
   width: 73%;
@@ -83,20 +93,22 @@ button:hover {
 <div class="row mb-4">
 
     <div class="mt-2">
-        <div id="quiz">
-            <h2>Assessment Quiz</h2>
+        <div id="quiz" class="w-50" style="background-color: #243441; border:none;" >
+            <h2 class="text-success">Assessment Quiz</h2>
             <form id="quiz-form">
               <div class="form-group">
-                <label for="height">What is your height? (in cm)</label>
-                <input type="number" id="height" name="height" required>
+                <label class="text-white" for="height">What is your height? (in cm)</label>
+                <input type="number" id="height" name="height" class="w-100" required>
               </div>
               <div class="form-group">
-                <label for="weight">What is your weight? (in kg)</label>
-                <input type="number" id="weight" name="weight" required>
+                <label class="text-white" for="weight">What is your weight? (in kg)</label>
+                <div>
+                <input type="number" id="weight" name="weight" class="w-100" required>
+              </div>
               </div>
               <div class="form-group ">
-                <label for="activity-level">What is your activity level?</label>
-                <select id="activity-level" name="activity-level" required>
+                <label class="text-white" for="activity-level">What is your activity level?</label>
+                <select class="w-100" id="activity-level" name="activity-level" required>
                   <option value="">Select an option</option>
                   <option value="sedentary">Sedentary (little or no exercise)</option>
                   <option value="lightly-active">Lightly active (light exercise or sports 1-3 days a week)</option>
@@ -105,23 +117,24 @@ button:hover {
                   <option value="extra-active">Extra active (very hard exercise or sports, physical job or training twice a day)</option>
                 </select>
               </div>
-              <button type="submit" id="submit-quiz">Calculate</button>
+              <button class="w-100" type="submit" id="submit-quiz">Calculate</button>
               
             </form>
            <div>
             
            </div>
-            <div id="result-container">
+            <div id="result-container" class=" text-white">
                 
             </div>
+            <div class="text-center w-100" id="savebtn" style="display: none">
+              <form action="{{route('quizzdone')}}" method="post">
+                  @csrf
+              <input type="hidden" name="bmi" id="bmi">
+              <button class="btn btn-success mt-3 w-100">SAVE</button>
+          </form>
           </div>
           {{-- a center button shows after end the quiz for saving details --}}
-            <div class="text-center" id="savebtn" style="display: none">
-                <form action="{{route('quizzdone')}}" method="post">
-                    @csrf
-                <input type="hidden" name="bmi" id="bmi">
-                <button class="btn btn-success mt-3">Save</button>
-            </form>
+          
             </div>
     </div>
     {{-- h1 in green top coaches --}}

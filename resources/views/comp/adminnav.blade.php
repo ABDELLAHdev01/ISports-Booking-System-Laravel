@@ -25,6 +25,12 @@
                 
        
     </div>	
+    <form method="POST" action="{{Route("logout")}}">
+      @csrf
+      {{-- <a type="button" class="btn btn-success nav-item btn-sm " href="{{url("dashboard")}}">DASHBOARD</a> --}}
+          <button  type="submit" class="btn btn-outline-success btn-sm nav-item " >LOGOUT</button>
+      </form>
+      
       </div>
     </div>
   </nav>

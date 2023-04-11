@@ -94,6 +94,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        
+        // destroy course ussing id by Coursee:destr
+        
     }
 }

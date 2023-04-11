@@ -40,11 +40,12 @@
 <div class="row mb-4">
 
     <div class="mt-2">
-      <form action="{{route('searchcoach')}}" method="get">
+      <form action="{{route('searchingfoacoach')}}" method="post">
         <div class="input-group">
-
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-success">search</button>
+          @csrf
+          @method('post')
+          <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-outline-success">search</button>
           </form>
           </div>
     </div>
@@ -75,7 +76,7 @@
               {{-- <div class="card-footer">
                 <small class="text-muted">Online 3 mins ago</small>
               </div> --}}
-              <div class="card-footer text-success " > <a href="/dashboard/coach/{{$item->id}}" class="btn btn-success btn-rounded btn-block btn-sm w-100"><i class="bi bi-alarm"></i> BOOK NOW !</a></div>
+              <div class="card-footer text-success " > <a href="/dashboard/coach/{{$item->user_id}}" class="btn btn-success btn-rounded btn-block btn-sm w-100"><i class="bi bi-alarm"></i> BOOK NOW !</a></div>
 
             </div>
           </div>

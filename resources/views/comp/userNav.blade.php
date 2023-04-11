@@ -17,7 +17,7 @@
             <a class="nav-link text-white" href="{{route('searchCourses')}}">Courses</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#Team">Support</a>
+            <a class="nav-link text-white" href="404">Support</a>
           </li>
           
          
