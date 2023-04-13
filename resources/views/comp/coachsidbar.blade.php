@@ -158,7 +158,9 @@
               <div class="mt-2 ms-4">
              <p class="text-white"> 👋 {{Auth::user()->name}}</p>
           </div>
-             
+          <li>
+            <a href="{{route('edittheprofile')}}"><i class="bi bi-person-circle"></i> Profile</a>
+        </li>
             
               <li>
                   <a href="{{route('dashboard.coach')}}"><i class="bi bi-calendar-check"></i> Accept Booking</a>

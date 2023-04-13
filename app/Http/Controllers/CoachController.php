@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\coach;
+use App\Models\User;
 
+use App\Models\coach;
 use App\Models\Course;
 use App\Mail\TestEmail;
 use App\Models\booking;
@@ -22,6 +23,36 @@ class CoachController extends Controller
         $data = coach::all();
         return view('user.coaches', compact('data'));
         //
+    }
+
+    public function editcoach(){
+        $data = coach::where('user_id', auth()->user()->id)->first();
+        return view('coach.edit', compact('data'));
+    }
+    public function updatecoach(Request $request){
+        $data = coach::where('user_id', auth()->user()->id)->first();
+        $data->name = request('name');
+        $user = User::find(auth()->user()->id);
+
+        // image
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $data->image = $name;
+            $user->image = $name;
+        }
+        $data->description = request('description');
+        $data->price = request('price');
+
+        $data->location = request('location');
+        $data->save();
+        // change also the user info
+        $user->name = request('name');
+        
+        $user->save();
+        return redirect()->back()->with('success', 'Coach updated successfully');
     }
 
     /**

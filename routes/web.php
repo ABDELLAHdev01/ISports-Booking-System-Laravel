@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes 
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -26,6 +26,9 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+// ga3 satat bnat nass 
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,6 +63,8 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::put('/updatepassword', [userInfo::class, 'changepassword'])->name('updatePassword');
+Route::delete('/profile', [userInfo::class, 'destroy'])->name('profile.destroy');
 // user routes
 Route::middleware(['isUser'])->group(function () {
 Route::get('/quiz', function() { return view('user.quiz');})->name('quiz'); 
@@ -70,8 +75,6 @@ Route::get('/dashboard', [userInfo::class , 'index'])->name('dashboard');
 Route::get('/dashboard/courses', [CourseController::class , 'index'])->name('searchCourses');
 Route::get('/profile', [userInfo::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [userInfo::class, 'update'])->name('profile.update');
-Route::put('/updatepassword', [userInfo::class, 'changepassword'])->name('updatePassword');
-Route::delete('/profile', [userInfo::class, 'destroy'])->name('profile.destroy');
 Route::get('/dashboard/course', [CourseController::class, 'search'])->name('user.searchcourse');
 Route::get('/dashboard/coaches',[CoachController::class, 'index'])->name('searchCoaches');
 Route::get('/dashboard/coach/{id}',[CoachController::class, 'show'])->name('showacoach');
@@ -105,6 +108,8 @@ Route::middleware(['isCoach'])->group(function () {
     Route::post('/coach/addcourse',[coachController::class, 'addacourse'])->name('storecourse');
     Route::get('/coach/mycourses/{id}',[coachController::class, 'deletecourse'])->name('deletecourse');
     Route::post('/coach/mycourses/edit',[coachController::class, 'editcourse'])->name('editcourse');
+    Route::get('/coach/editprofile',[coachController::class, 'editcoach'])->name('edittheprofile');
+    Route::post('/coach/editprofile',[coachController::class, 'updatecoach'])->name('updatecoach');
     // update route
     Route::post('/coach/mycourses/update',[coachController::class, 'updatecourse'])->name('updatecourse');
     

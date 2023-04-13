@@ -36,14 +36,14 @@
 <!-- /#page-content-wrapper -->
 <div class="row mb-4">
 
-    <div class="mt-2">
+    {{-- <div class="mt-2">
       <form action="{{route('searchcoach')}}" method="get">
         <div class="input-group">
 
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             <button type="button" class="btn btn-outline-success">search</button>
           </form>
-          </div>
+          </div> --}}
     </div>
     <div class="mt-4">
         <div class="row">

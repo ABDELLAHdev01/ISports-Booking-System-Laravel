@@ -76,7 +76,7 @@
               {{-- <div class="card-footer">
                 <small class="text-muted">Online 3 mins ago</small>
               </div> --}}
-              <div class="card-footer text-success " > <a href="/dashboard/coach/{{$item->user_id}}" class="btn btn-success btn-rounded btn-block btn-sm w-100"><i class="bi bi-alarm"></i> BOOK NOW !</a></div>
+              <div class="card-footer text-success " > <a href="/dashboard/coach/{{$item->id}}" class="btn btn-success btn-rounded btn-block btn-sm w-100"><i class="bi bi-alarm"></i> BOOK NOW !</a></div>
 
             </div>
           </div>
