@@ -58,6 +58,8 @@ text: 'you have booked a session',
 })
   </script>
 @endif
+
+{{-- sweetalert --}}
 <div id="page-content-wrapper">
     <div class="container mt-5  ">
         <div class="row">
@@ -137,6 +139,12 @@ text: 'you have booked a session',
 </div>
     {{-- h1 in green top coaches --}}
     {{--  --}}
+    <div class="w-100 bg-white mt-4">
+      <center>
+
+        @include('comp.feedback')
+      </center>
+    </div>
    <div class="mt-4">
     <div class="row row-cols-1 row-cols-md-3 g-4">
        
@@ -172,9 +180,58 @@ text: 'you have booked a session',
 
 </div>
 {{-- top top courses --}}
+<div>
+  {{-- feedbacks --}}
+  <style>
+    
+.feedback-btn {
+    position: absolute;
+    position-attachment: fixed;
+    width: 45px;
+    height: 100px;
+    background: #025261;
+    top: 45%;
+    right: 0;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    box-shadow: 1px 1px 3px #000;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+}
+
+.feedback-btn:hover {
+	width: 50px;
+}
+
+.feedback-txt {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    position: absolute;
+    right: -10px;
+    top: 22px;
+    color: #fff;
+    transition: 0.2s ease-out;
+}
+
+.feedback-btn:hover .feedback-txt {
+	right: -6px;
+}
+  </style>
+  <a target="_blank" href="https://api.whatsapp.com/send?phone={{$coachuser->phone}}">
+<div class="feedback-btn">
+  <p class="feedback-txt mt-3">CONTACT  </p>
+</div>
+</div>
+</a>
+
+{{-- sweet alert html costumize --}}
+
 
 <!-- /#wrapper -->
-@include('comp.jq')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></>
 
 </body>

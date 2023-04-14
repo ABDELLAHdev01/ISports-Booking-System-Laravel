@@ -68,7 +68,7 @@
             <div class="">
                 <h3 class="mt-3">Course Details</h3>
                 <p class="mt-3">Course Level: {{$data->level}}</p>
-                <p class="mt-3">Course Coach: <a href="/dashboard/coach/{{$data->id}}">  {{$data->author}} </a></p>
+                <p class="mt-3">Course Coach: <a href="/dashboard/coach/{{$userid->id}}">  {{$data->author}} </a></p>
             </div>
 
             <div>
@@ -163,7 +163,36 @@
         {{-- </div> --}}
         <div class="actionBox">
             <ul class="commentList">
+                {{-- if no comment --}}
+                @if (count($comments) == 0)
+                <li class="mb-2">
+                   BE THE FIRST COMMENT 👇👇
+                </li>
+                @endif
+                {{-- if no comment --}}
+                {{-- if comment --}}
+                @foreach ($comments as $comment)
                 <li>
+                    <div class="commenterImage">
+                      <img src="{{asset('images/'.$comment->image)}}"" />
+                    </div>
+                    <div class="commentText">
+                        <p class="">{{$comment->comment}}</p> <span class="date sub-text">on {{$comment->created_at}}</span>
+    
+                    </div>
+                    @if (Auth::user()->id == $comment->user_id)
+                    <div class="ms-5 ">
+                        <form action="{{route('deletecomment')}}" method="post">
+                            @method('post')
+                            @csrf
+                            <input type="hidden" name="id" value="{{$comment->id}}">
+                            <button class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Delete</button>
+                        </form>
+                    </div>
+                    @endif
+                </li>
+                @endforeach
+                {{-- <li>
                     <div class="commenterImage">
                       <img src="http://placekitten.com/50/50" />
                     </div>
@@ -190,11 +219,14 @@
     
                     </div>
                 </li>
-            </ul>
-            <form class="form-inline " role="form">
+            </ul> --}}
+            <form class="form-inline " action="{{route('addcomment')}}" method="post">
+                @csrf
+                @method('POST')
                 <div class="input-group">
-                    <input type="text" class="form-control rounded" placeholder="Example comment"  />
-                    <button type="button" class="btn btn-success"><i class="bi bi-pencil-fill"></i> Add Comment</button>
+                    <input type="text" class="form-control rounded" name="comment" placeholder="Example comment"  />
+                    <input type="hidden" name="course_id" value="{{$data->id}}">
+                    <button type="submit" class="btn btn-success"><i class="bi bi-pencil-fill"></i> Add Comment</button>
                   </div>
                 <div class="form-group">
                     {{-- <button class="btn btn-success">Add</button> --}}

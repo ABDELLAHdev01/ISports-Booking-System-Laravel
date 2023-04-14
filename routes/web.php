@@ -12,6 +12,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DemandbecoachController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -83,6 +84,8 @@ Route::post('/dashboard/coach/search',[CoachController::class, 'search'])->name(
 Route::get('/dashboard/course/{id}',[CourseController::class, 'show'])->name('viewCourse');
 Route::post('/dashboard/applycoaching',[DemandbecoachController::class, 'store'])->name('applycoaching');
 Route::get('/dashboard/applycoaching',[DemandbecoachController::class, 'index'])->name('applycoachingindex');
+Route::post('/dashboard/addcpmment', [CommentController::class ,'store'])->name('addcomment');
+Route::post('/dashboard/deletecomment/}', [CommentController::class ,'deleteComment'])->name('deletecomment');
 });
 // admin routes
 Route::middleware(['isAdmin'])->group(function () {

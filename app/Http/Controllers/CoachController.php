@@ -167,7 +167,10 @@ class CoachController extends Controller
     public function show($id)
     {
         $data = coach::find($id);
-        return view('user.coach', compact('data'));
+        $coachuser = User::find($data->user_id);
+        // return
+        return view('user.coach', compact('data', 'coachuser'));
+        // return view('user.coach', compact('data'));
         //
         
     }

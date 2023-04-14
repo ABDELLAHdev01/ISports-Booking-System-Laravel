@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Course;
+use App\Models\comment;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -58,7 +60,10 @@ class CourseController extends Controller
     public function show($id)
     {
         $data = Course::find($id);
-        return view('user.course', compact('data'));
+        $userid = User::find($data->user_id);
+        $comments = comment::where('course_id', $id)->get();
+        // return view('user.course', compact('data', 'comments'));
+        return view('user.course', compact('data', 'comments', 'userid'));
         //
     }
 

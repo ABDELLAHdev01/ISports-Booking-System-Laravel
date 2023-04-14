@@ -64,7 +64,9 @@ class User extends Authenticatable
         return $this->hasMany(demandbecoach::class );
     }
 
-    
+    public function comments(){
+        return $this->hasMany(comment::class );
+    }
 
     
 
