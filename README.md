@@ -20,4 +20,5 @@ Our website is a platform that connects sports coaches with individuals looking 
 8 - Security: The website should have appropriate security measures in place to protect user data 
 
 
+#                           NOTE :
 It is important to note that I, Abdellah El Ghoulam, developed and designed this website, and I have been responsible for all aspects of its creation. This includes the website's functionality, design, and security measures. As the developer and designer, I have ensured that the website is user-friendly and responsive, with a visually appealing design. I have also implemented appropriate security measures to protect user data and ensure the safety of the platform. I am committed to providing a reliable and convenient booking system for sports coaching sessions, and I am continuously working to improve and enhance the website's features and functionality.
