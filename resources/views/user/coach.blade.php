@@ -143,10 +143,7 @@
     {{-- h1 in green top coaches --}}
     {{-- --}}
     <div class="w-100 bg-white mt-4">
-      <center>
-
-        @include('comp.feedback')
-      </center>
+     
     </div>
     <div class="mt-4">
       <div class="row row-cols-1 row-cols-md-3 g-4">

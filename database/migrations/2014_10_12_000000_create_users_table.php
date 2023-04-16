@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->nullable();
+            $table->string('image')->default('vectimg.png');
             $table->string('gender')->nullable();
             $table->string('birthDate')->nullable();
             $table->string('adress')->nullable();
