@@ -1,4 +1,5 @@
 
+#               Isport - Booking system for a sports coaching session
 Our website is a platform that connects sports coaches with individuals looking to improve their skills or fitness. Users can search for coaches based on location, sport, and availability, and can book for coaching sessions , either in-person or online. The website also includes a review system and messaging system to facilitate communication between coaches and users. In addition, users can take an assessment quiz to determine the best training plan for their needs. With a responsive design and strong security measures, our website is a convenient and reliable way to book a date with a sports coach and get personalized training.
 
 #                                                       Our website offers :
@@ -17,3 +18,7 @@ Our website is a platform that connects sports coaches with individuals looking 
 7 - Responsive design: The website should be fully responsive and work well on both desktop and mobile devices.
 
 8 - Security: The website should have appropriate security measures in place to protect user data 
+
+
+#                           NOTE :
+It is important to note that I, Abdellah El Ghoulam, developed and designed this website, and I have been responsible for all aspects of its creation. This includes the website's functionality, design, and security measures. As the developer and designer, I have ensured that the website is user-friendly and responsive, with a visually appealing design. I have also implemented appropriate security measures to protect user data and ensure the safety of the platform. I am committed to providing a reliable and convenient booking system for sports coaching sessions, and I am continuously working to improve and enhance the website's features and functionality.
