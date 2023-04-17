@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -59,14 +61,15 @@
             @endif
           </script>  
     
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-orange-300" style="background-color: #efefef">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style='background-image: url("../images/06-2.jpg"); background-position: center; background-size: cover; background-repeat: no-repeat;' >
             <div>
                 <a href="/">
                     <img src="../yoga-g18d718c64_1280.png" alt="" width="250px">
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mb-3 px-6 py-4 shadow-md overflow-hidden sm:rounded-lg " style="background-color: #243441;">
+            <div class="w-full sm:max-w-md mb-3 mt-6 px-6 py-4 drop-shadow-xl overflow-hidden sm:rounded-lg bg-transparent" style="background-color: #243441;">
+                        
                 {{ $slot }}
             </div>
         </div>
